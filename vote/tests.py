@@ -3,7 +3,6 @@ from rest_framework.test import APIClient
 from rest_framework import status
 import datetime
 from .models import Entity
-from employer.models import Entity as E_Entity
 
 
 # Create your tests here.
@@ -119,8 +118,6 @@ class VoteResultTest(TestCase):
         self.today = datetime.date.today()
         self.yesterday = self.today - datetime.timedelta(days=1)
         self.day_before_yesterday = self.today - datetime.timedelta(days=2)
-
-        print(E_Entity.objects.all().values('id'))
 
         # Authenticate employer
         self.auth = self.client.post('/api/authenticate',
