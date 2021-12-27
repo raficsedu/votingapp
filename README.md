@@ -22,6 +22,13 @@ First clone this project into your machine/pc. This project can be run into both
 	POSTGRES_USER=postgres  
 	POSTGRES_PASSWORD=@mypass
 	```
+	Use the same POSTGRES_NAME, POSTGRES_USER, POSTGRES_PASSWORD value in docker-compose.yml file in db service under environment section.
+	```
+	environment:  
+	  - POSTGRES_USER=postgres  
+	  - POSTGRES_PASSWORD=@mypass  
+	  - POSTGRES_DB=voting_app
+	```
 4. Go to the project directory and run ..
 	```
 	1. sudo docker-compose build

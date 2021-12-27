@@ -5,8 +5,10 @@ services:
     image: postgres
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    env_file:
-      - ./votingapp/.env
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=@mypass
+      - POSTGRES_DB=voting_app
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
