@@ -54,9 +54,15 @@ def menu_list(request):
     token = request.headers['Authorization'].split(' ')[1]
     user = get_user_by_token(token)
     if request.method == 'GET':
-        menus = list(Menu.objects.filter(entity=user.restaurant,
-                                         created_at__range=(get_start_of_the_day(), get_end_of_the_day())))
-        return JsonResponse({'date': datetime.date.today(), **get_formatted_menus(menus)}, status=status.HTTP_200_OK)
+        menus = Menu.objects.filter(created_at__range=(get_start_of_the_day(), get_end_of_the_day()))
+        restaurants = menus.distinct('entity_id')
+        all_menus = []
+        for restaurant in restaurants:
+            menu = menus.filter(entity_id=restaurant.entity_id)
+            all_menus.append(
+                {'restaurant_id': restaurant.entity_id, 'date': datetime.date.today(), **get_formatted_menus(menu)})
+
+        return JsonResponse(all_menus, status=status.HTTP_200_OK, safe=False)
     elif request.method == 'POST':
         if getattr(user, 'restaurant', None):
             if 'menus' in request.data:

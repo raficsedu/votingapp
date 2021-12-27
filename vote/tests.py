@@ -4,11 +4,9 @@ from rest_framework import status
 import datetime
 from .models import Entity
 from employer.models import Entity as E_Entity
-from restaurant.models import Entity as R_Entity
 
 
 # Create your tests here.
-
 class CreateNewVoteTest(TestCase):
     @classmethod
     def setUpTestData(cls):
