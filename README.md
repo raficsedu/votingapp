@@ -8,36 +8,39 @@ First clone this project into your machine/pc. This project can be run into both
 
 ### Docker
 1. Clone the project with ..
-	```
-	git clone https://github.com/raficsedu/votingapp.git
-	```
+    ```
+    git clone https://github.com/raficsedu/votingapp.git
+    ```
 2. Install ***Docker*** and ***Dcoker Composer*** from their official web site based on your machine OS.
 3. Create a .env file in the directory where the settings.py file resides and chage the database name, user and pass according to your choice.
 
-	```
-	SECRET_KEY=django-insecure-pku+v1sfow-d#p)--e^8cgti2-csfb_6x-&idobcpc2a8pvql9
-	DEBUG=True
-	POSTGRES_HOST_NAME=db
-	POSTGRES_NAME=voting_app  
-	POSTGRES_USER=postgres  
-	POSTGRES_PASSWORD=@mypass
-	```
-	Use the same POSTGRES_NAME, POSTGRES_USER, POSTGRES_PASSWORD value in docker-compose.yml file in db service under environment section.
-	```
-	environment:  
-	  - POSTGRES_USER=postgres  
-	  - POSTGRES_PASSWORD=@mypass  
-	  - POSTGRES_DB=voting_app
-	```
+    ```
+    SECRET_KEY=django-insecure-pku+v1sfow-d#p)--e^8cgti2-csfb_6x-&idobcpc2a8pvql9
+    DEBUG=True
+    POSTGRES_HOST_NAME=db
+    POSTGRES_NAME=voting_app  
+    POSTGRES_USER=postgres  
+    POSTGRES_PASSWORD=@mypass
+    ```
+    Use the same POSTGRES_NAME, POSTGRES_USER, POSTGRES_PASSWORD value in docker-compose.yml file in db service under environment section.
+    ```
+    environment:  
+      - POSTGRES_USER=postgres  
+      - POSTGRES_PASSWORD=@mypass  
+      - POSTGRES_DB=voting_app
+    ```
 4. Go to the project directory and run ..
-	```
-	1. sudo docker-compose build
-	2. sudo docker-compose up
-	```
+    ```
+    1. sudo docker-compose build
+    2. sudo docker-compose up
+    ```
 5. Migrate all the migration files ..
-	```
-	sudo docker-compose run web python manage.py migrate
-	```
+    ```
+    sudo docker-compose run web python manage.py migrate
+    ```
+ 
+6. If the build throws error due to log folder missing, then you need to create a folder named "log" in the project root directory.
+
 Now open up your browser and navigate to http://127.0.0.1:8000.
 
 
